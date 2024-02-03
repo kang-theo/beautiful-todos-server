@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum TodoStatus {
+  Open
+  Completed
+}
+
+model Todo {
+  id            String     @id @default(cuid())
+  title         String     @db.Char(255)
+  status        TodoStatus
+  createdAt     String
+  lastUpdatedAt String
+  completedAt   String
+  creator       String?
+}
