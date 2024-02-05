@@ -47,7 +47,6 @@ class Todo {
           creator,
         },
       });
-      console.log(newTodo);
 
       if (newTodo) {
         return {
