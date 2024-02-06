@@ -6,6 +6,9 @@ import { Todo as PrismaTodo, TodoStatus } from "@prisma/client";
 import prisma from "@/lib/prisma";
 
 // Convention: model name is singular, datatable name is plural
+/**
+ * 
+ */
 class Todo {
   // be created by prisma cuid when persisting, not essential here
   id?: string;
@@ -31,6 +34,10 @@ class Todo {
 
   // Persist in database; These methods are corresponding to APIs in todos controller who use these methods to interact with database
   // methods based on one record should be instance methods
+   /**
+   * Save new todo item
+   * @returns {Promis<IApiRes>}
+   */
   async save(): Promise<IApiRes> {
     // async request(like database query) should be in try/catch block
     try {
@@ -62,6 +69,12 @@ class Todo {
   }
 
   // should the update be static, but it is complex to transfer from prisma object to Todo object
+    /**
+   * Update todo item status
+   * @param - id
+   * @param - newStatus
+   * @returns {Promis<IApiRes>}
+   */
   static async update(id: string, newStatus: TodoStatus): Promise<IApiRes> {
     try {
       const todo: PrismaTodo | null = await prisma.todo.update({

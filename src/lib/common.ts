@@ -5,6 +5,9 @@ import { APIError } from "@/lib/apiError";
 
 /**
  * Catch prisma ORM error
+ * @param defaultMsg
+ * @param err
+ * @returns {IApiRes}
  */
 export function catchORMError(defaultMsg: string, err?: Error): IApiRes {
   // type narrowing
@@ -23,6 +26,9 @@ export function catchORMError(defaultMsg: string, err?: Error): IApiRes {
 
 /**
  * Log API reqquest basic info
+ * @param req
+ * @param res
+ * @param next
  */
 export function requestLogger(req: Request, res: Response, next: NextFunction) {
   console.log(`${req.method} - ${req.url}`);
@@ -31,6 +37,10 @@ export function requestLogger(req: Request, res: Response, next: NextFunction) {
 
 /**
  * Error handling Middleware function for logging the error message
+ * @param error
+ * @param req
+ * @param res
+ * @param next
  */
 export function errorLogger(
   error: APIError,
@@ -44,7 +54,12 @@ export function errorLogger(
 }
 
 /**
+ * Fallback Middleware function for returning
  * 404 error for undefined paths
+ * @param req
+ * @param res
+ * @param next
+ * @returns
  */
 export function invalidPathHandler(
   req: Request,
@@ -58,9 +73,13 @@ export function invalidPathHandler(
 }
 
 /**
- * Catch all unexcepted errors
- */
-export function errorHandler(
+ * Catch all unexcepted error
+ * @param error
+ * @param req
+ * @param res
+ * @param next
+ * @returns {IApiRes}
+ */export function errorHandler(
   error: Error,
   req: Request,
   res: Response,
