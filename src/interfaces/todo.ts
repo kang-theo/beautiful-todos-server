@@ -2,7 +2,7 @@
  * Define TODO interface
  * @field id: {string} primary key
  * @field title: {string} todo's title
- * @field status: {string} todo's status, enum value: New and Completed
+ * @field status: {string} todo's status, enum value: Open and Completed
  * @field createdAt: {string} todo's created timestamp
  * @field lastUpdatedAt: {string} todo's lastest updated timestamp
  * @field completedAt: {string} todo's completed timestamp
